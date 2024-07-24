@@ -63,20 +63,17 @@ def confusion_matrix(_m, ds):
 
 # Paths to the model files
 model_paths = [
-    r"/root/AConvNet-pytorch-main/AConvNet-pytorch-main/ensemble/model-034.pth",
-    #r"/root/AConvNet-pytorch-main/AConvNet-pytorch-main/ensemble/model-069.pth",
-    r"/root/AConvNet-pytorch-main/AConvNet-pytorch-main/ensemble/model-036.pth",
-    #r"/root/AConvNet-pytorch-main/AConvNet-pytorch-main/ensemble/model-027.pth",
-    r"/root/AConvNet-pytorch-main/AConvNet-pytorch-main/ensemble/model-015.pth",
-    #r"/root/AConvNet-pytorch-main/AConvNet-pytorch-main/ensemble/model-022.pth",
-    r"/root/AConvNet-pytorch-main/AConvNet-pytorch-main/ensemble/model-017.pth",
+    r".\Results Documentation\Networks Files\Ensemble AConvNet\Model_1.pth",
+    r".\Results Documentation\Networks Files\Ensemble AConvNet\Model_2.pth",
+    r".\Results Documentation\Networks Files\Ensemble AConvNet\Model_3.pth",
+    r".\Results Documentation\Networks Files\Ensemble AConvNet\Model_4.pth",
 ]
 
 # Load models
 models = [load_model(path, classes=4, channels=2) for path in model_paths]
 
 # Load dataset
-test_set = load_dataset('dataset', False, 'eoc-1-t72-a64', 100)
+test_set = load_dataset('dataset', False, 'eoc-1-SOC', 100)
 
 # Calculate confusion matrix and accuracy
 _conf_mat, accuracy = confusion_matrix(models, test_set)
