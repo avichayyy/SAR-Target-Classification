@@ -7,7 +7,7 @@ This project is conducted by Avichay Ashur, with the supervision of Dr. Meir Bar
 # About
 This project’s goal is to develop a classifier based on convolution neural network to classify Synthetic Aperture Radar (SAR) targets using deep learning.
 Deep learning is a powerful technique that can be used to train robust classifier. It has shown its effectiveness in diverse areas ranging from image analysis to natural language processing. These developments have huge potential for SAR data analysis and SAR technology in general, slowly being realized. A major task for SAR-related algorithms has long been object detection and classification, which is called automatic target recognition (ATR). 
-To illustrate this workflow, we will use the Moving and Stationary Target Acquisition and Recognition (MSTAR) Mixed Targets dataset published by the Air Force Research Laboratory [1]. Our goal is to develop a model to classify ground targets based on SAR imagery.
+To illustrate this workflow, we will use the Moving and Stationary Target Acquisition and Recognition ([MSTAR](https://www.sdms.afrl.af.mil/index.php?collection=mstar)) Mixed Targets dataset published by the Air Force Research Laboratory. Our goal is to develop a model to classify ground targets based on SAR imagery.
 
 # Background
 
@@ -388,4 +388,62 @@ The conffusion matrix for the trained network (99.34% Accuracy):
   <img src="https://github.com/user-attachments/assets/6b6d8d0a-732e-42ab-bb75-fadd03ead025" alt="image" width="650">
 </div>
 
+## Choosen Solution - Ensemble AConvNet
+The choosen solution is Ensemble AConvNet, this solution managed to improve the accuracy of the previous implementations. This architecture is based on 4 different AConvNet networks that were trained with different hyper parameters.
+the difference in hyper parameters compared to the pytorch implementation is shown in the following table:
+
+| LR Decay | LR Steps           | Momentum | Batch Size | Accuracy | Seed |
+|----------|---------------------|----------|------------|----------|------|
+| 0.9      | [10,20,30,40,50]    | 0.95     | 64         | 99.42    | 0    |
+| 0.8      | [10,20,30,40,50]    | 0.90     | 64         | 99.42    | 17   |
+| 0.9      | [7,15,25,35,45]     | 0.95     | 10         | 99.42    | 25   |
+| 0.9      | [7,12,20,30,50]     | 0.90     | 10         | 99.42    | 36   |
+
+The Ensemble AConvNet architecture is shown in the following figure:
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/1c713e0b-23a5-42b1-bfac-0e09fa88f123">
+</div>
+
+In the case of a tie during the majority vote, the choosen prediction is the class with smaller class ID.
+
+### Results Comparison
+
+| Network                     | Accuracy | Size [MB] |
+|-----------------------------|----------|-----------|
+| Random Forest               | 70.72    | 14.37     |
+| KNN                         | 90.98    | 16.9      |
+| KNN - Augmented             | 92.02    | 4141      |
+| [Matlab Network](https://www.mathworks.com/help/radar/ug/sar-target-classification-using-deep-learning.html)              | 92.37    | 7.07      |
+| Transformer Architecture        | 94.31    | 5.8       |
+| [SSR Network](https://doi.org/10.3390/rs12213628)                 | 97.4    | 0.301     |
+| Bidirectional LSTM Architecture | 97.7    | 3.91      |
+| [VGG16](https://www.researchgate.net/publication/335382385_Deep_Learning_for_SAR_Image_Classification)                       | 97.91    | 254       |
+| LSTM Architecture               | 99.05    | 3.7       |
+| [AConvNet - Random Patch](https://www.researchgate.net/publication/301937325_Target_Classification_Using_the_Deep_Convolutional_Networks_for_SAR_Images)     | 99.1    | 1.16      |
+| [AConvNet – 49 x Patch](https://github.com/jangsoopark/AConvNet-pytorch/tree/main)       | 99.34    | 1.16      |
+| [Resnet-18 – 81 x Patch](https://arxiv.org/abs/1708.07920)      | 99.56    | 44.5      |
+| Ensemble AConvNet - OURS    | 99.71    | 4.64      |
+
+The attention based models (LSTM | Bidirectional LSTM | Transformer) are based on AConvNet with addition of attention layer before the final layer. <br>
+
+As we can see, the Ensemble AConvNet network managed to improve the resnet-18 results while maintaining a much smaller memory size. <br>
+
+The confussion matrix for the choosen solution and the base networks is shown in the following figure:
+![image](https://github.com/user-attachments/assets/a574fa82-cf13-4401-a945-c4157f340c13)
+
+On the left are the confusion matrix for for the base models of the final architecture, each achieving 99.42% accuracy. <br>
+On the right is the Ensemble AConvNet confussion matrix, achieving <b> 99.71% Accuracy </b>. <br>
+In the Red square is a small section inside the confussion matrix. The average error inside that section for each of the base models is 6 images mispredictions. The Ensemble network managing to achieve inside that section 2 images error mispredictions, this is an example of an improvement of the ensemble network.
+
+# Conclusions
+In this project, I explored various methodologies for classifying Synthetic Aperture Radar (SAR) images, including classical techniques and deep learning-based approaches. My primary focus was on developing and improving a Convolutional Neural Network (CNN)-based classifier, which led to significant improvements in classification accuracy. <br>
+
+<b> One of the key contributions of this work was improving the accuracy of the most successful model by 0.15%. In addition to improving accuracy, the proposed architecture is nearly 90% smaller than the best architecture to date, making it more practical for use in real-world applications. This reduction in model size is particularly beneficial for use in resource-constrained environments, such as processing on satellites or aircraft. </b> <br>
+Beyond developing and implementing the classifier, I also employed several dimensionality reduction techniques to present high-dimensional information on a 2D graph. In this part of the project, I used PCA and t-SNE algorithms to gain further insight into the data structure and facilitate the understanding of the classification process. <br>
+
+The final solution, Ensemble AConvNet, combined four base networks to enhance the original performance and reduce the error achieved so far with the AConvNet network. Using an ensemble of networks not only improved accuracy but also provided a framework that can be adapted to different datasets and SAR classification tasks. <br>
+
+In summary, this project demonstrated the potential of deep learning in SAR target classification and highlighted the importance of model optimization and dimensionality reduction in achieving high performance and efficiency. <br>
+Future work could aim to expand the dataset through collaboration with one of the defense industries, which could help refine the model and make it more modern and relevant. Additionally, based on the work of [W. Liang et al,](https://doi.org/10.3390/rs12213628) this dataset and other existing datasets could be used to develop new architectures with a focus on learning from a small amount of data. Liang's paper presents relatively good results using only 10% of the data.
 
