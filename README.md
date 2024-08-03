@@ -43,7 +43,7 @@ The principle of SAR involves combining the radar signals collected over a synth
 SAR technology is widely used in various fields, including environmental monitoring, disaster management, and military reconnaissance. Its ability to provide high-resolution images under all weather conditions makes it a powerful tool for detecting and analyzing surface features on the Earth.
 </p>
 
-### 1.2 Basic Principles of SAR
+### Basic Principles of SAR
 
 <p>
 The basic operation of Synthetic Aperture Radar (SAR) can be outlined in the following stages:
@@ -80,3 +80,23 @@ To enhance the quality of the final image, reflections are collected over time a
 
 ![image](https://github.com/user-attachments/assets/4ea68ab9-7075-4415-84e0-d44d4faa89e0)
 
+<h3>Advantages and Disadvantages of Synthetic Aperture Radar (SAR)</h3>
+
+<h4>Advantages of SAR:</h4>
+<ol>
+  <li>The radar can be mounted on any moving platform, particularly aircraft or satellites.</li>
+  <li>SAR is capable of producing very high-resolution images.</li>
+  <li>SAR is minimally affected by weather conditions (heavy rain may reduce image quality due to unwanted reflections caused by the transmitted waves hitting the raindrops).</li>
+  <li>SAR can operate both during the day and at night.</li>
+  <li>The resolution is not dependent on flight altitude (a mathematical development and explanation for this is provided in section 1.4).</li>
+</ol>
+
+<h4>Disadvantages of SAR:</h4>
+<ol>
+  <li>It takes a long time (minutes to hours) to produce a single image because multiple reflections must be collected over time to generate an image.</li>
+  <li>The image quality is dependent on environmental characteristics—the image depends on the reflectivity coefficient of the objects, so the image characteristics will vary depending on the reflective environment.</li>
+  <li>Several motion characteristics of the radar (altitude, velocity vector, and target angle) must be known to interpret the signals.</li>
+  <li>SAR only works on static targets.</li>
+  <li>Interpreting the image is challenging without special training and general knowledge of imaging characteristics. It should be noted that the goal of this project is to attempt to mitigate this disadvantage.</li>
+  <li>Extensive calculations are required to process the received data in order to produce a single image.</li>
+</ol>
