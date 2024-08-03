@@ -357,3 +357,35 @@ The training set contain only 2,747 Images. in order to improve the network's ac
 | 96.21%   | Image Patching [12]                         |
 
 </div>
+
+As shown above, Image Patching managing to get the best results. Image patching implementation is taken from [AConvNet-pytorch git](https://github.com/jangsoopark/AConvNet-pytorch/tree/main). <br>
+Image Patching implementation explained in the following figure:
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/cc83f141-495e-47c4-9162-0820cfc8f606" alt="image" width="1000">
+</div>
+First step is to Resize the input image to 128x128 pixels. For the training set we than crop the center 94x94 pixels. next step we crop 88x88 pixels out of the image, each time doing 1 step in x or y axis.
+this result 49 total images extracted from the original images. the next step is to perform FFT and extract the phase image, this will be another input to the network (resulting 2 channels input).
+This augmentation result 134,603 total images, each image generate: 49 images x 2 channels (amplitude and phase) x 88x88 (image size)
+
+### AConvNet Architecture
+AConvNet Architecture was first presented by [S. Chen et al,](https://www.researchgate.net/publication/301937325_Target_Classification_Using_the_Deep_Convolutional_Networks_for_SAR_Images). They managed to achieve 99.1% Accuracy over the test set using AConvNet architecture and Random Image Patching (random steps), the Architecture for the network is shown in the following figure:
+<div align="center">
+<img src="https://github.com/user-attachments/assets/366d8fe9-4251-45a7-93d5-646fc2386823">
+</div>
+
+In this project, ive used the pytorch implementation for AConvNet, the original parameters that was used during the training pytorch are:
+<div align="center">
+Batch Size = 100, Epochs = 100, Momentum = 0.9, Optimizer = ADAM, weight decay = 4e-3, <br>
+Learning Rate = 1e-3, Learning Rate step = [50], Learning Rate decay=0.1.
+</div>
+
+<br>
+
+The conffusion matrix for the trained network (99.34% Accuracy):
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/6b6d8d0a-732e-42ab-bb75-fadd03ead025" alt="image" width="650">
+</div>
+
+
