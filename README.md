@@ -196,3 +196,164 @@ The figures provided at the end of the article illustrate how SAR images are aff
 <p align="center">
 (a) L=0.2 ; (b) L=1; (c) L=5 (d) Original SAR image
 </p>
+
+# MSTAR Dataset
+<p>
+MSTAR Dataset contain 4 different pitch angles {15,17,30,45}. For 15° and 17° there are 11 different classes, while 30° have 5 classes and 45° only have 4 classes.
+this is shown in the following figure
+</p>
+<div align="center">
+<img src="https://github.com/user-attachments/assets/ccfa40b8-fa85-4a88-878f-fd59ee51663e">
+</div>
+
+<p>
+The common practice in literature is that the training set is always 17° – as it is the largest (see Table 1), while the test set is 15°. In some papers, tests are also conducted on larger imaging angles (30° and 45°). In these cases, it is common to keep the training set at 17°, and the test set at 30° and 45° as appropriate for the test.
+
+Table bellow shows the number of samples for each class depending on the radar imaging angle in the dataset.
+</p>
+
+| Angle | ZIL131 | BMP2 | BTR60 | BTR70 | D7 | T62 | T72 | 2S1 | BRDM2 | ZSU234 | SLICY | Total |
+|-------|--------|------|-------|-------|----|-----|-----|-----|-------|--------|-------|-------|
+| 15°   | 274    | 195  | 195   | 196   | 274| 273 | 196 | 274 | 274   | 274    | 274   | 2,425 |
+| 17°   | 299    | 233  | 256   | 233   | 299| 299 | 232 | 299 | 298   | 299    | 298   | 2,747 |
+| 30°   | 0      | 0    | 0     | 0     | 0  | 0   | 288 | 288 | 420   | 406    | 288   | 1,402 |
+| 45°   | 0      | 0    | 0     | 0     | 0  | 0   | 0   | 303 | 423   | 422    | 303   | 1,148 |
+| Total | 573    | 428  | 451   | 429   | 573| 572 | 716 |1,164| 1,415 | 1,401  | 1,163 | 7,722 |
+
+<p>
+During this project I will work with a subset of the MSTAR dataset called 10 class MSTAR dataset. in this subset we exclude the class "SLICY".
+This is because SLICY class have different data distribution (it is a bunker while the other classes are vehicles), i will further explain this decision in the Data Visualization section.
+</p>
+
+# Data Visualization
+<p>
+To gain a comprehensive understanding of the dataset, I plan to apply several dimensionality reduction algorithms:
+
+1. **PCA (Principal Component Analysis)**: This linear method will be used first to reduce the data dimensions while retaining as much variance as possible.
+
+2. **t-SNE (t-Distributed Stochastic Neighbor Embedding)**: Following PCA, t-SNE will help in visualizing clusters by preserving local data relationships.
+
+This multi-step approach will enable a thorough exploration of the dataset’s underlying patterns and structures, allowing us to visualize it effectively in 2D.
+As I will show, only the t-SNE gave satisfying results and therefore will be used mostly.
+</p>
+
+### PCA Non-Normalized 
+<img src="https://github.com/user-attachments/assets/631ce0d4-760a-4511-a750-1c67b6880b36" alt="image" width="800" />
+
+### PCA Normalized
+<img src="https://github.com/user-attachments/assets/d26d630c-6d45-4f60-9210-b2d98f96517d" alt="image" width="800" />
+
+<p>
+As we can see, PCA both normalized and Non-Normalized didnt result a good image that can help us understand the distribution of the data so I decided to use t-SNE as well.
+</p>
+
+### t-SNE
+<img src="https://github.com/user-attachments/assets/5ce3a861-6c12-482c-ae67-b7bd1bdd75c9" alt="image" width="800" />
+
+<p>
+The t-SNE algorithm resulted a more clear view of the dataset, as shown in the figure above, the SLICY have different distribution compared to the other classes. I will show in the result section, when training the network with the SLICY class, our results are improving because the data distribution is very distinct compared to the other classes, therefore on our choosen solution, we wont be using the SLICY class.
+</p>
+
+<p>
+In order to show why in this project I will be focusinjg on 15° as the test set and 17° as training set, I will show the data distribution between the differentt angles.
+</p>
+
+<img src="https://github.com/user-attachments/assets/8d1aba30-babd-4623-b6b9-520dab5e4f71" alt="image" width="800" />
+
+<img src="https://github.com/user-attachments/assets/993a3457-1608-4878-a2bb-0355fb357a5f" alt="image" width="800" />
+
+<img src="https://github.com/user-attachments/assets/c43cb8c3-4b72-4fe6-b8ff-634d705ccd3c" alt="image" width="800" />
+
+<p>
+As we can see in the different figures, while the data distribution for 15° vs 17° seems to be very similiar, the bigger the difference in the angles, the more difference we see in the data distribution.
+While the images in low dimensions for 15° vs 17° are very close to each other, when we look at  17° vs 30°/45°, the difference is getting bigger and it will be a very challanging task to learn on 17° and make predictions over 30°/45°.
+</p>
+
+# Results
+### MATLAB Demo Network
+<p>
+As part of the initial project goals, I will run the MATLAB demo network for SAR image classification using deep learning, for the final results, I will rewrite the code in Python and compare the result of the given network to other solutions. The MATLAB demo architecture is:
+</p>
+<div align="center">
+<img src="https://github.com/user-attachments/assets/30776c71-089c-475c-b344-a79f0dd9a756">
+</div>
+<p>
+Each Block contain Conv2d layer with ReLU Activation -> Another Conv2d layer with ReLU activation -> Batch Norm -> Max Pooling 2x2
+</p>
+<p>
+The initial MATLAB Demo split the dataset: training set - 80% ; Validation set - 10% ; Test set - 10%. This is not the standard that is used in the literature, the results are shown in the following table:
+</p>
+
+| Run # | 9    | 8    | 7    | 6    | 5    | 4    | 3    | 2    | 1    | 0    |
+|-------|------|------|------|------|------|------|------|------|------|------|
+| Accuracy | 97.6 | 98.0 | 97.7 | 98.3 | 95.7 | 97.7 | 97.6 | 97.1 | 97.8 | 98.3 |
+
+Mean: 97.58% Accuracy | Variance: 0.49
+
+Confusion Matrix:
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/c4391f0f-f702-4ffd-9c28-97b50e022073" alt="image" width="600">
+</div>
+
+<p>
+As I show above, the given network with the current dataset split is doing very well and able to classify the image with 97.58% average accuracy over 10 different seeds. though this is not the ussual data split, in the following table are the results when using 15° vs 17° as test and training.
+</p>
+
+| Run #   | 9    | 8    | 7    | 6    | 5    | 4    | 3    | 2    | 1    | 0    |
+|---------|------|------|------|------|------|------|------|------|------|------|
+| Accuracy| 83.1 | 86.9 | 86.0 | 74.4 | 80.4 | 76.1 | 82.0 | 88.6 | 81.6 | 83.9 |
+
+Mean: 82.3% | Variance 18.3
+
+Confusion Matrix:
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/9e9155ec-b5fb-4f72-95c4-b5cca0e2efa5" alt="image" width="600">
+</div>
+
+### Classical Methods
+<p>
+As part of the testing I did, I've tried Two classical methods for this task. The first is Random Forest. This method results 70.72% Accuracy. <br>
+The Second method I used is KNN, the results for this method is shown in the following table:  
+</p>
+
+<div align="center">
+  
+| Accuracy | K  |
+|----------|----|
+| 90.98    | 1  |
+| 89.18    | 2  |
+| 88.86    | 3  |
+| 87.39    | 4  |
+| 87.28    | 5  |
+| 86.36    | 6  |
+| 85.32    | 7  |
+| 85.04    | 8  |
+| 83.95    | 9  |
+| 82.47    | 10 |
+| 79.99    | 15 |
+| 79.36    | 20 |
+| 79.25    | 25 |
+| 68.27    | 30 |
+| 67.43    | 35 |
+
+</div>
+
+<p>
+As we can see, the bigger the K, the lower the model accuracy is.
+</p>
+
+### Augmentations
+<p>
+The training set contain only 2,747 Images. in order to improve the network's accuracy I will try to use data augmentation in order to increase the training set size. I've tested different augmentations using the MATLAB Demo network (implemeted in python), the results are:
+</p>
+
+<div align="center">
+  
+| Accuracy | Data Augmentation                           |
+|----------|---------------------------------------------|
+| 62.60%   | Random Rotation (0,360) [10]                |
+| 83.67%   | No Augmentation                             |
+| 90.52%   | Gaussian Noise [11] – N(0,0.01)             |
+| 96.21%   | Image Patching [12]                         |
+
+</div>
