@@ -179,3 +179,20 @@ $\ Δ_a = \frac{v}{B_D} = \frac{L}{2}$
 <p>
 The combination of all the above results in the conclusion that the azimuth resolution (or flight direction resolution) for Synthetic Aperture Radar is equal to half the physical antenna size and is independent of the distance between the sensor and the ground! At first glance, this result may seem strange, as it implies that a smaller antenna provides better resolution. This can be explained as follows: the smaller the physical antenna, the larger its footprint, allowing for longer observation time for each point on the ground (i.e., a longer synthetic array can be synthesized). A longer synthetic array allows for a broader Doppler frequency bandwidth and, therefore, finer ground resolution. Similarly, if the distance between the sensor and the ground increases, the physical footprint increases, leading to longer observation time and broader Doppler frequency bandwidth, which balances the increase in distance. This result is crucial and allows the radar to be mounted on satellites in addition to aircraft.
 </p>
+
+### Speckle Noise in SAR Images
+<p>
+In their article, T. Zheng et al. examine the modeling of speckle noise in Synthetic Aperture Radar (SAR) images by demonstrating the effects of different noise levels, represented by various 𝐿 values, on the original images. They present the equations used to model this noise as follows:
+
+<p align="center">
+$\ p(u) = L^L\cdot\frac{u^{L-1}}{\Gamma (L)}\cdot e^{-Lu}$
+</p>
+
+The figures provided at the end of the article illustrate how SAR images are affected by varying levels of speckle noise, highlighting the differences in image quality and clarity as 𝐿 changes. This systematic approach helps in understanding and addressing speckle interference in SAR imagin
+</p>
+<div align="center">
+<img src="https://github.com/user-attachments/assets/3d9943a3-510b-4c70-9e40-503c9fecd64d">
+</div>
+<p align="center">
+(a) L=0.2 ; (b) L=1; (c) L=5 (d) Original SAR image
+</p>
