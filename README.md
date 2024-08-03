@@ -122,64 +122,58 @@ As the radar moves along the flight path, it transmits pulses of energy and reco
 The change in distance can be described as:
 </p>
 
-<p>
-<span style="display:flex; justify-content:center;">R(s) = \sqrt(R<sub>0</sub>² + v²s²)</span>
+<p align="center">
+$\ R(s) = \sqrt{R_0^2 + v^2s^2} $
 </p>
 
 <p>
 where R<sub>0</sub> denotes the closest distance of the radar to the scatterer, v denotes the radar's velocity, and s denotes time along the flight path (also known as slow time). At the closest point, s, the time will be zero. In a good approximation for remote sensing radar, we can assume that vs≪R<sub>0</sub> (note that this may not hold for the general case, but the basic principle remains the same). In this case, we can approximate the range as a function of slow time using the Taylor approximation:
 </p>
 
-<p>
-<span style="display:block; text-align:center;">R(s) ≈ R<sub>0</sub> + (v²s²)/(2R<sub>0</sub>)</span>
+
+<p align="center">
+$\ R(s) ≈ R_0 + \frac{v^2s^2}{2R_0} $
 </p>
 
 <p>
 The phase of the range compression is:
 </p>
 
-<p>
-<span style="display:block; text-align:center;">ϕ(s) ≈ -(4πR<sub>0</sub>)/λ - (2πv²s²)/(R<sub>0</sub>λ)</span>
+<p align="center">
+$\ ϕ(s) = -\frac{4πR(s)}{\lambda} ≈ -\frac{4\pi R_0}{\lambda} - \frac{2\pi v^2s^2}{R_0\lambda} $
 </p>
 
 <p>
 The instantaneous frequency of the signal is:
 </p>
 
-<p>
-<span style="display:block; text-align:center;">f(s) = (1/2π) ∙ ∂ϕ(s)/∂s = -(2v²s)/(R<sub>0</sub>λ)</span>
+<p align="center">
+$\ f(s) = -\frac{1}{2\pi} \cdot \frac{∂ϕ(s)}{∂s} = -\frac{2v^2s}{R_0\lambda} $
 </p>
 
 <p>
-This is the pattern of an ultra-short pulse (linear chirp pattern). To find the bandwidth of this signal, we need to determine the maximum time we can use in signal processing. This maximum time is called the "integration time," and it is determined by the time during which the scatterer is within the antenna beam. For an antenna of physical length L, the half-power horizontal beamwidth is:
-</p>
-
-<p>
-<span style="display:block; text-align:center;">θ<sub>a</sub> = λ/L,</span>
-</p>
-
-<p>
+This is the pattern of an ultra-short pulse (linear chirp pattern). To find the bandwidth of this signal, we need to determine the maximum time we can use in signal processing. This maximum time is called the "integration time," and it is determined by the time during which the scatterer is within the antenna beam. For an antenna of physical length L, the half-power horizontal beamwidth is: θ<sub>a</sub> = $\ \frac{λ}{L}$
 so the scatterer at the closest distance R<sub>0</sub> is illuminated for a duration of:
 </p>
 
-<p>
-<span style="display:block; text-align:center;">s<sub>tot</sub> = (λR<sub>0</sub>)/Lv.</span>
+<p align="center">
+$\ s_{tot} = \frac{\lambda R_0}{Lv}$
 </p>
 
 <p>
 Half of this time occurs as the radar approaches the closest range, and the other half occurs as it moves away from the closest range. Therefore, the bandwidth of the signal, which is the bandwidth of the signal in Synthetic Aperture Radar, is:
 </p>
 
-<p>
-<span style="display:block; text-align:center;">B<sub>D</sub> = 2v/L.</span>
+<p align="center">
+$\ B_D = \frac{2v}{L}$
 </p>
 
 <p>
 If this signal is filtered using a suitable filter, the compressed signal obtained will have a time width of 1/B<sub>D</sub>. Since the radar platform moves at velocity v, this will result in the flight direction resolution being described by:
 </p>
 
-<p>
-<span style="display:block; text-align:center;">Δ<sub>a</sub> = v/B<sub>D</sub> = L/2.</span>
+<p align="center">
+$\ Δ_a = \frac{v}{B_D} = \frac{L}{2}$
 </p>
 
 <p>
