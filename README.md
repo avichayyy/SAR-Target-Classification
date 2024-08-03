@@ -447,3 +447,40 @@ The final solution, Ensemble AConvNet, combined four base networks to enhance th
 In summary, this project demonstrated the potential of deep learning in SAR target classification and highlighted the importance of model optimization and dimensionality reduction in achieving high performance and efficiency. <br>
 Future work could aim to expand the dataset through collaboration with one of the defense industries, which could help refine the model and make it more modern and relevant. Additionally, based on the work of [W. Liang et al,](https://doi.org/10.3390/rs12213628) this dataset and other existing datasets could be used to develop new architectures with a focus on learning from a small amount of data. Liang's paper presents relatively good results using only 10% of the data.
 
+
+# References
+> MSTAR dataset. [https://www.sdms.afrl.af.mil/index.php?collection=mstar](https://www.sdms.afrl.af.mil/index.php?collection=mstar)
+>
+> J. van Zyl, Y. Kim, "Synthetic Aperture Radar (SAR) Imaging Basics," 10.1002/9781118116104.ch1, 2011.
+>
+> T. Zheng, J. Li, H. Tian, Q. Wu, "The Process Analysis Method of SAR Target Recognition in Pre-Trained CNN Models," Sensors, vol. 23, no. 23, pp. 6461, 2023. Available: [https://doi.org/10.3390/s23146461](https://doi.org/10.3390/s23146461).
+>
+> Guo, Chuan, et al. "On calibration of modern neural networks." International conference on machine learning. PMLR, 2017.
+>
+> SAR Target Classification Using Deep Learning. MathWorks. Retrieved from [https://www.mathworks.com/help/radar/ug/sar-target-classification-using-deep-learning.html](https://www.mathworks.com/help/radar/ug/sar-target-classification-using-deep-learning.html)
+>
+> Hotelling, H. (1933). Analysis of a complex of statistical variables into principal components. Journal of Educational Psychology, 24(6), 417-441. [https://doi.org/10.1037/h0071325](https://doi.org/10.1037/h0071325)
+>
+> van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE. Journal of Machine Learning Research, 9, 2579-2605.
+>
+> Cover, T. M., & Hart, P. E. (1967). Nearest neighbor pattern classification. IEEE Transactions on Information Theory, 13(1), 21-27. [https://doi.org/10.1109/TIT.1967.1053964](https://doi.org/10.1109/TIT.1967.1053964)
+>
+> Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32. [https://doi.org/10.1023/A:1010933404324](https://doi.org/10.1023/A:1010933404324)
+>
+> Simard, P. Y., Steinkraus, D., & Platt, J. C. (2003). Best practices for convolutional neural networks applied to visual document analysis. In Proceedings of the Seventh International Conference on Document Analysis and Recognition (pp. 958-962). IEEE. [https://doi.org/10.1109/ICDAR.2003.1227801](https://doi.org/10.1109/ICDAR.2003.1227801)
+>
+> Bishop, C. M. (1995). Training with noise is equivalent to Tikhonov regularization. Neural Computation, 7(1), 108-116. [https://doi.org/10.1162/neco.1995.7.1.108](https://doi.org/10.1162/neco.1995.7.1.108)
+>
+> S. Chen, H. Wang, F. Xu and Y. Q. Jin, "Target Classification Using the Deep Convolutional Networks for SAR Images," in IEEE Transactions on Geoscience and Remote Sensing, vol. 54, no. 8, pp. 4806-4817, Aug. 2016. doi: 10.1109/TGRS.2016.2551720 [http://ieeexplore.ieee.org/document/7460942/](http://ieeexplore.ieee.org/document/7460942/)
+>
+> Park, J. (n.d.). AConvNet-pytorch. GitHub. [https://github.com/jangsoopark/AConvNet-pytorch/tree/main](https://github.com/jangsoopark/AConvNet-pytorch/tree/main)
+>
+> Breiman, L. (1996). Bagging predictors. Machine Learning, 24(2), 123-140. [https://doi.org/10.1007/BF00058655](https://doi.org/10.1007/BF00058655)
+>
+> Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). Attention is All You Need. In Advances in Neural Information Processing Systems (NIPS), 30.
+>
+> W. Liang, T. Zhang, W. Diao, X. Sun, L. Zhao, K. Fu, Y. Wu, "SAR Target Classification Based on Sample Spectral Regularization," Remote Sens., vol. 12, no. 12, pp. 3628, 2020. Available: [https://doi.org/10.3390/rs12213628](https://doi.org/10.3390/rs12213628)
+>
+> Schuster, M., & Paliwal, K. K. (1997). Bidirectional Recurrent Neural Networks. IEEE Transactions on Signal Processing, 45(11), 2673-2681. doi:10.1109/78.650093.
+>
+> A. Hasni, M. Hanifi, C. Anibou, M. Saidi, "Deep Learning for SAR Image Classification," 10.1007/978-3-030-29516-5_6, 2020.
