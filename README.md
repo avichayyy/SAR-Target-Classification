@@ -100,3 +100,88 @@ To enhance the quality of the final image, reflections are collected over time a
   <li>Interpreting the image is challenging without special training and general knowledge of imaging characteristics. It should be noted that the goal of this project is to attempt to mitigate this disadvantage.</li>
   <li>Extensive calculations are required to process the received data in order to produce a single image.</li>
 </ol>
+
+<h3>Synthesis of Synthetic Aperture Radar (SAR)</h3>
+
+<p>
+The synthesis of SAR refers to a specific application of imaging radar systems, which uses the movement of the radar platform and special signal processing to create high-resolution images. Before the discovery of SAR synthesis, imaging radars operated using the principle of real aperture and were known as Side-Looking Airborne Radars (SLAR). Karl Wiley from Goodyear Aircraft Corporation is considered the first researcher to describe the use of Doppler frequency analysis of signals from a coherent radar in motion to improve resolution in the flight direction. Wiley noted that two targets at different positions in the flight direction would be at different angles relative to the aircraft's velocity vector, resulting in different Doppler frequencies (the Doppler effect is the phenomenon that causes a change in the pitch of a vehicle's horn as it passes by a stationary observer). Using this effect, targets in the flight direction can be separated based on their different Doppler frequencies. This technique was originally known as Doppler beam sharpening, but later became known as Synthetic Aperture Radar.
+</p>
+
+<p>
+The main difference between real and synthetic aperture radar is the way azimuthal resolution is achieved. The radar range resolution equation derived earlier for real aperture radar still applies here. However, the imaging mechanism in the flight direction and the resolution obtained in the flight direction differ in the cases of real and synthetic aperture radar.
+</p>
+
+![image](https://github.com/user-attachments/assets/04edd113-1c26-4031-9ae2-66e7be78b23c)
+
+
+<p>
+As the radar moves along the flight path, it transmits pulses of energy and records the reflected signals, as shown in the figure above. When processing the radar data, the radar platform's position is taken into account when summing the signals to combine the energy in the flight direction. As the radar moves along the flight path, the distance between the radar and the target changes, with the minimum distance occurring when the scatterer is exactly parallel to the radar platform. The phase of the radar signal is given by: 4πλR(s). The change in distance between the radar and the scatterer means that after range compression, the phase of the signal will differ for different positions along the flight path.
+</p>
+
+<p>
+The change in distance can be described as:
+</p>
+
+<p>
+<span style="display:flex; justify-content:center;">R(s) = \sqrt(R<sub>0</sub>² + v²s²)</span>
+</p>
+
+<p>
+where R<sub>0</sub> denotes the closest distance of the radar to the scatterer, v denotes the radar's velocity, and s denotes time along the flight path (also known as slow time). At the closest point, s, the time will be zero. In a good approximation for remote sensing radar, we can assume that vs≪R<sub>0</sub> (note that this may not hold for the general case, but the basic principle remains the same). In this case, we can approximate the range as a function of slow time using the Taylor approximation:
+</p>
+
+<p>
+<span style="display:block; text-align:center;">R(s) ≈ R<sub>0</sub> + (v²s²)/(2R<sub>0</sub>)</span>
+</p>
+
+<p>
+The phase of the range compression is:
+</p>
+
+<p>
+<span style="display:block; text-align:center;">ϕ(s) ≈ -(4πR<sub>0</sub>)/λ - (2πv²s²)/(R<sub>0</sub>λ)</span>
+</p>
+
+<p>
+The instantaneous frequency of the signal is:
+</p>
+
+<p>
+<span style="display:block; text-align:center;">f(s) = (1/2π) ∙ ∂ϕ(s)/∂s = -(2v²s)/(R<sub>0</sub>λ)</span>
+</p>
+
+<p>
+This is the pattern of an ultra-short pulse (linear chirp pattern). To find the bandwidth of this signal, we need to determine the maximum time we can use in signal processing. This maximum time is called the "integration time," and it is determined by the time during which the scatterer is within the antenna beam. For an antenna of physical length L, the half-power horizontal beamwidth is:
+</p>
+
+<p>
+<span style="display:block; text-align:center;">θ<sub>a</sub> = λ/L,</span>
+</p>
+
+<p>
+so the scatterer at the closest distance R<sub>0</sub> is illuminated for a duration of:
+</p>
+
+<p>
+<span style="display:block; text-align:center;">s<sub>tot</sub> = (λR<sub>0</sub>)/Lv.</span>
+</p>
+
+<p>
+Half of this time occurs as the radar approaches the closest range, and the other half occurs as it moves away from the closest range. Therefore, the bandwidth of the signal, which is the bandwidth of the signal in Synthetic Aperture Radar, is:
+</p>
+
+<p>
+<span style="display:block; text-align:center;">B<sub>D</sub> = 2v/L.</span>
+</p>
+
+<p>
+If this signal is filtered using a suitable filter, the compressed signal obtained will have a time width of 1/B<sub>D</sub>. Since the radar platform moves at velocity v, this will result in the flight direction resolution being described by:
+</p>
+
+<p>
+<span style="display:block; text-align:center;">Δ<sub>a</sub> = v/B<sub>D</sub> = L/2.</span>
+</p>
+
+<p>
+The combination of all the above results in the conclusion that the azimuth resolution (or flight direction resolution) for Synthetic Aperture Radar is equal to half the physical antenna size and is independent of the distance between the sensor and the ground! At first glance, this result may seem strange, as it implies that a smaller antenna provides better resolution. This can be explained as follows: the smaller the physical antenna, the larger its footprint, allowing for longer observation time for each point on the ground (i.e., a longer synthetic array can be synthesized). A longer synthetic array allows for a broader Doppler frequency bandwidth and, therefore, finer ground resolution. Similarly, if the distance between the sensor and the ground increases, the physical footprint increases, leading to longer observation time and broader Doppler frequency bandwidth, which balances the increase in distance. This result is crucial and allows the radar to be mounted on satellites in addition to aircraft.
+</p>
