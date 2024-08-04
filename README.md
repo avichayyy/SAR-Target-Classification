@@ -5,9 +5,9 @@ This project is conducted by Avichay Ashur, with the supervision of Dr. Meir Bar
 ![image](https://github.com/user-attachments/assets/ba95e305-9f0f-4230-b926-a57d26ebc99b)
 
 # About
-This project’s goal is to develop a classifier based on convolution neural network to classify Synthetic Aperture Radar (SAR) targets using deep learning.
-Deep learning is a powerful technique that can be used to train robust classifier. It has shown its effectiveness in diverse areas ranging from image analysis to natural language processing. These developments have huge potential for SAR data analysis and SAR technology in general, slowly being realized. A major task for SAR-related algorithms has long been object detection and classification, which is called automatic target recognition (ATR). 
-To illustrate this workflow, we will use the Moving and Stationary Target Acquisition and Recognition ([MSTAR](https://www.sdms.afrl.af.mil/index.php?collection=mstar)) Mixed Targets dataset published by the Air Force Research Laboratory. Our goal is to develop a model to classify ground targets based on SAR imagery.
+This project’s goal is to develop a classifier based on convolution neural network to classify Synthetic Aperture Radar (SAR) targets using deep learning. <br>
+Deep learning is a powerful technique that can be used to train robust classifier. It has shown its effectiveness in diverse areas ranging from image analysis to natural language processing. These developments have huge potential for SAR data analysis and SAR technology in general, slowly being realized. A major task for SAR-related algorithms has long been object detection and classification, which is called automatic target recognition (ATR). <br>
+To illustrate this workflow, we will use the Moving and Stationary Target Acquisition and Recognition ([MSTAR](https://www.sdms.afrl.af.mil/index.php?collection=mstar)) Mixed Targets dataset published by the Air Force Research Laboratory. Our goal is to develop a model to classify ground targets based on SAR imagery. <br>
 
 # Background
 
